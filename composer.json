@@ -1,0 +1,9 @@
+{
+    "name": "superv/hosting-module",
+    "type": "superv-droplet",
+    "autoload": {
+        "psr-4": {
+            "SuperV\\Modules\\Hosting\\": "src/"
+        }
+    }
+}
