@@ -1,24 +1,13 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services;
 
 use SuperV\Modules\Supreme\Domains\Service\Model\ServiceModel;
-use SuperV\Platform\Domains\Entry\EntryModel;
+use SuperV\Nucleus\Domains\Entry\Nucleus;
 
-class HostingServiceModel extends EntryModel
+abstract class HostingServiceModel extends Nucleus
 {
-    public function service()
-    {
-        return $this->belongsTo(ServiceModel::class, 'service_id');
-    }
-
-    /** @return ServiceModel */
-    public function getService()
-    {
-        return $this->service;
-    }
-
     public function getAgentSlug()
     {
-        return $this->getService()->getAgent()->slug();
+        return $this->service->agent->slug;
     }
 
     public function getModelSlug()
@@ -28,6 +17,13 @@ class HostingServiceModel extends EntryModel
 
     public function getServer()
     {
-        return $this->getService()->getServer();
+        return $this->service->server;
     }
+
+    /** @return ServiceModel */
+    public function getService()
+    {
+        return $this->service;
+    }
+
 }

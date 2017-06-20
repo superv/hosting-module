@@ -1,22 +1,11 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services\Dns;
 
-use SuperV\Nucleus\Domains\Entry\Nucleus;
+use SuperV\Modules\Hosting\Domains\Services\HostingServiceModel;
 
-class ZoneModel extends Nucleus
+class ZoneModel extends HostingServiceModel
 {
-
-    public function getAgentSlug()
+    public function records()
     {
-        return $this->service->agent->slug;
-    }
-
-    public function getModelSlug()
-    {
-        return snake_case(substr(class_basename($this), 0, -5));
-    }
-
-    public function getServer()
-    {
-        return $this->service->server;
+        return $this->hasMany(DnsRecordModel::class, 'dns_zone_id');
     }
 }

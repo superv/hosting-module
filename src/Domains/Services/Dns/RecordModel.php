@@ -1,7 +1,11 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services\Dns;
 
-use SuperV\Nucleus\Domains\Entry\Nucleus;
+use SuperV\Modules\Hosting\Domains\Services\HostingServiceModel;
 
-class RecordModel extends Nucleus
+class RecordModel extends HostingServiceModel
 {
+    public function service()
+    {
+        return $this->zone->service;
+    }
 }

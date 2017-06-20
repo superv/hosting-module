@@ -1,29 +1,15 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services\Dns;
 
-use Illuminate\Events\Dispatcher;
+use SuperV\Modules\Hosting\Domains\Services\HostingServiceObserver;
 
-class ZoneObserver
+class ZoneObserver extends HostingServiceObserver
 {
-    /**
-     * @var ZoneModel
-     */
-    private $zone;
-
-    public function __construct(ZoneModel $zone)
+    public function deleted()
     {
-        $this->events = app(Dispatcher::class);
-        $this->zone = $zone;
-    }
+        parent::deleted();
 
-    public function creating()
-    {
-
-    }
-
-    public function created()
-    {
-        $event = $this->zone->getAgentSlug() . '.' . $this->zone->getModelSlug() . ".created";
-
-        $this->events->dispatch($event, $this->zone);
+        $this->entry->records->map(function (RecordModel $record) {
+            $record->delete();
+        });
     }
 }
