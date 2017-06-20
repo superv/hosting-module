@@ -1,8 +1,6 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services\Dns;
 
 use Illuminate\Events\Dispatcher;
-use SuperV\Nucleus\Domains\Entry\Entry;
-use SuperV\Platform\Domains\Entry\EntryModel;
 
 class ZoneObserver
 {
@@ -25,7 +23,7 @@ class ZoneObserver
     public function created()
     {
         $event = $this->zone->getAgentSlug() . '.' . $this->zone->getModelSlug() . ".created";
-// superv.agents.power_dns.zone.created
+
         $this->events->dispatch($event, $this->zone);
     }
 }
