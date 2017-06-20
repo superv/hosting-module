@@ -8,8 +8,8 @@ class ZoneObserver extends HostingServiceObserver
     {
         parent::deleted();
 
-        $this->entry->records->map(function (RecordModel $record) {
-            $record->delete();
-        });
+//        $this->entry->records->map(function (RecordModel $record) {
+//            $record->delete();
+//        });
     }
 }

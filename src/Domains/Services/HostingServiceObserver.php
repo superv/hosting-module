@@ -1,9 +1,10 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services;
 
 use SuperV\Nucleus\Domains\Entry\Nucleus;
+use SuperV\Nucleus\Domains\Entry\Observer;
 use SuperV\Platform\Contracts\Dispatcher;
 
-abstract class HostingServiceObserver
+abstract class HostingServiceObserver extends Observer
 {
     /** @var Dispatcher */
     protected $events;
@@ -19,10 +20,10 @@ abstract class HostingServiceObserver
         $this->events = app(Dispatcher::class);
     }
 
-    public function creating() { }
-
     public function created()
     {
+        parent::created();
+
         $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".created";
 
         $this->events->dispatch($event, $this->entry);
@@ -30,7 +31,7 @@ abstract class HostingServiceObserver
 
     public function saved()
     {
-
+        parent::saved();
         $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".updated";
 
         $this->events->dispatch($event, $this->entry);
@@ -38,6 +39,7 @@ abstract class HostingServiceObserver
 
     public function updated()
     {
+        parent::updated();
         $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".updated";
 
         $this->events->dispatch($event, $this->entry);
@@ -45,7 +47,7 @@ abstract class HostingServiceObserver
 
     public function deleted()
     {
-
+        parent::deleted();
         $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".deleted";
 
         $this->events->dispatch($event, $this->entry);
