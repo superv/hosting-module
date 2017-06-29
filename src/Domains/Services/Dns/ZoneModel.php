@@ -1,19 +1,18 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services\Dns;
 
 use SuperV\Modules\Hosting\Domains\Services\HostingServiceModel;
-use SuperV\Nucleus\Domains\Entry\HasMany;
 
 class ZoneModel extends HostingServiceModel
 {
-    protected $results;
+    protected $table = 'hosting_dns_zones';
 
     public function records()
     {
-        return new HasMany($this, RecordModel::class, 'zone');
+        return $this->hasMany(RecordModel::class, 'id', 'zone_id');
     }
 
-    public function setRelation($method, $results)
+    public function getRecords()
     {
-        array_set($this->results, $method, $results);
+        return $this->records;
     }
 }

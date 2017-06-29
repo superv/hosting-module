@@ -1,59 +1,43 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services;
 
-use SuperV\Nucleus\Domains\Entry\Nucleus;
-use SuperV\Nucleus\Domains\Entry\Observer;
-use SuperV\Platform\Contracts\Dispatcher;
+use SuperV\Platform\Domains\Entry\EntryModel;
+use SuperV\Platform\Domains\Entry\EntryObserver;
 
-abstract class HostingServiceObserver extends Observer
+class HostingServiceObserver extends EntryObserver
 {
-    /** @var Dispatcher */
-    protected $events;
-
-    /**
-     * @var HostingServiceModel
-     */
-    protected $entry;
-
-    public function __construct(Nucleus $entry)
+    public function created(EntryModel $entry)
     {
-        $this->entry = $entry;
-        $this->events = app(Dispatcher::class);
+        parent::created($entry);
+
+        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".created";
+
+        $this->events->dispatch($event, $entry);
     }
 
-    protected function dispatch($event) {
-        $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() .'.'. $event;
+    public function saved(EntryModel $entry)
+    {
+        parent::saved($entry);
 
-        $this->events->dispatch($event, $this->entry);
+        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".updated";
+
+        $this->events->dispatch($event, $entry);
     }
 
-    public function created()
+    public function updated(EntryModel $entry)
     {
-        parent::created();
+        parent::updated($entry);
 
-        $this->dispatch('created');
+        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".updated";
+
+        $this->events->dispatch($event, $entry);
     }
 
-    public function saved()
+    public function deleted(EntryModel $entry)
     {
-        parent::saved();
-        $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".updated";
+        parent::deleted($entry);
 
-        $this->events->dispatch($event, $this->entry);
-    }
+        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".deleted";
 
-    public function updated()
-    {
-        parent::updated();
-        $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".updated";
-
-        $this->events->dispatch($event, $this->entry);
-    }
-
-    public function deleted()
-    {
-        parent::deleted();
-        $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".deleted";
-
-        $this->events->dispatch($event, $this->entry);
+        $this->events->dispatch($event, $entry);
     }
 }

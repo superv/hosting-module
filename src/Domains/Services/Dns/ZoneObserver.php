@@ -1,14 +1,15 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services\Dns;
 
 use SuperV\Modules\Hosting\Domains\Services\HostingServiceObserver;
+use SuperV\Platform\Domains\Entry\EntryModel;
 
 class ZoneObserver extends HostingServiceObserver
 {
-    public function deleting()
+    public function deleting(EntryModel $entry)
     {
-        parent::deleting();
+        parent::deleting($entry);
 
-        $this->entry->records->map(function (RecordModel $record) {
+        $entry->getRecords()->map(function (RecordModel $record) {
             $record->delete();
         });
     }

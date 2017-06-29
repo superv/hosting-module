@@ -15,15 +15,15 @@ class CreateHostingDnsRecordsTable extends Migration
     {
         Schema::create('hosting_dns_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('dns_zone_id');
+            $table->unsignedInteger('zone_id');
             $table->unsignedInteger('external_id')->nullable();
             $table->string('name');
             $table->string('type');
             $table->text('content');
             $table->integer('ttl')->default(120);
-            $table->smallInteger('prio');
+            $table->smallInteger('prio')->default(0);
 
-            $table->foreign('dns_zone_id')
+            $table->foreign('zone_id')
                   ->references('id')
                   ->on('hosting_dns_zones')
                   ->onDelete('cascade');
