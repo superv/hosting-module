@@ -4,12 +4,12 @@ use SuperV\Modules\Hosting\Domains\Services\HostingServiceObserver;
 
 class ZoneObserver extends HostingServiceObserver
 {
-    public function deleted()
+    public function deleting()
     {
-        parent::deleted();
+        parent::deleting();
 
-//        $this->entry->records->map(function (RecordModel $record) {
-//            $record->delete();
-//        });
+        $this->entry->records->map(function (RecordModel $record) {
+            $record->delete();
+        });
     }
 }
