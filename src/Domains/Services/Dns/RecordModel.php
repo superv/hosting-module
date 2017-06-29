@@ -4,7 +4,7 @@ use SuperV\Modules\Hosting\Domains\Services\HostingServiceModel;
 
 class RecordModel extends HostingServiceModel
 {
-    public function service()
+    public function getService()
     {
         return $this->zone->service;
     }

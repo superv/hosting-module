@@ -7,7 +7,7 @@ abstract class HostingServiceModel extends Nucleus
 {
     public function getAgentSlug()
     {
-        return $this->service->agent->slug;
+        return $this->getService()->agent->slug;
     }
 
     public function getModelSlug()

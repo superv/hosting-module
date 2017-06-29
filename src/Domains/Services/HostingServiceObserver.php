@@ -20,13 +20,17 @@ abstract class HostingServiceObserver extends Observer
         $this->events = app(Dispatcher::class);
     }
 
+    protected function dispatch($event) {
+        $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() .'.'. $event;
+
+        $this->events->dispatch($event, $this->entry);
+    }
+
     public function created()
     {
         parent::created();
 
-        $event = $this->entry->getAgentSlug() . '.' . $this->entry->getModelSlug() . ".created";
-
-        $this->events->dispatch($event, $this->entry);
+        $this->dispatch('created');
     }
 
     public function saved()
