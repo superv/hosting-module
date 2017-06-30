@@ -5,39 +5,38 @@ use SuperV\Platform\Domains\Entry\EntryObserver;
 
 class HostingServiceObserver extends EntryObserver
 {
+    protected function dispatch(EntryModel $entry, $eventName)
+    {
+        $event = $entry->getAgentSlug() . '::' . $entry->getModelSlug() . ".{$eventName}";
+
+        $this->events->dispatch($event, $entry);
+    }
+
     public function created(EntryModel $entry)
     {
         parent::created($entry);
 
-        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".created";
-
-        $this->events->dispatch($event, $entry);
+        $this->dispatch($entry, "created");
     }
 
     public function saved(EntryModel $entry)
     {
         parent::saved($entry);
 
-        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".updated";
-
-        $this->events->dispatch($event, $entry);
+        $this->dispatch($entry, "updated");
     }
 
     public function updated(EntryModel $entry)
     {
         parent::updated($entry);
 
-        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".updated";
-
-        $this->events->dispatch($event, $entry);
+        $this->dispatch($entry, "updated");
     }
 
     public function deleted(EntryModel $entry)
     {
         parent::deleted($entry);
 
-        $event = $entry->getAgentSlug() . '.' . $entry->getModelSlug() . ".deleted";
-
-        $this->events->dispatch($event, $entry);
+        $this->dispatch($entry, "deleted");
     }
 }
