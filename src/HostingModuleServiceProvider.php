@@ -4,11 +4,16 @@ use SuperV\Modules\Hosting\Features\CreateDnsRecord;
 use SuperV\Modules\Hosting\Features\CreateDnsZone;
 use SuperV\Modules\Hosting\Features\DeleteDnsRecord;
 use SuperV\Modules\Hosting\Features\DeleteDnsZone;
+use SuperV\Modules\Hosting\Http\Controllers\Acp\DnsController;
+use SuperV\Modules\Hosting\Http\Controllers\Acp\HostingsController;
 use SuperV\Platform\Domains\Droplet\DropletServiceProvider;
 
 class HostingModuleServiceProvider extends DropletServiceProvider
 {
-    protected $routes = [];
+    protected $routes = [
+        'hostings'               => HostingsController::class . '@index',
+        'hostings/{hosting}/dns' => DnsController::class . '@index',
+    ];
 
     protected $features = [
         CreateDnsZone::class,
