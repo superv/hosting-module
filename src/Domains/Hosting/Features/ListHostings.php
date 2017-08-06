@@ -2,7 +2,7 @@
 
 use SuperV\Modules\Hosting\Domains\Hosting\HostingModel;
 use SuperV\Platform\Domains\Feature\Feature;
-use SuperV\Platform\Domains\UI\Button\Features\MakeButton;
+use SuperV\Platform\Domains\UI\Button\Features\MakeButtons;
 use SuperV\Platform\Domains\UI\Table\Table;
 
 class ListHostings extends Feature
@@ -19,10 +19,6 @@ class ListHostings extends Feature
             return '<a href="/hostings/' . $model->id . '/dns" class="btn btn-success">DNS</a>';
         });
 
-        $table->addButton([
-            'button' => 'view',
-            'href'   => '/hostings/{entry.id}',
-        ]);
         $buttonsRaw = [
             [
                 'button' => 'new_hosting',
@@ -47,7 +43,7 @@ class ListHostings extends Feature
             ]
         ];
         foreach ($buttonsRaw as $button) {
-            $buttons[] = $this->dispatch(new MakeButton($button, $arguments));
+            $buttons[] = $this->dispatch(new MakeButtons($button, $arguments));
         }
 
 
