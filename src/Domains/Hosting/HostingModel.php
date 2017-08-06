@@ -1,8 +1,8 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Hosting;
 
-use SuperV\Platform\Domains\Model\EloquentModel;
+use SuperV\Platform\Domains\Entry\EntryModel;
 
-class HostingModel extends EloquentModel
+class HostingModel extends EntryModel
 {
     protected $table = 'hosting_hostings';
 
