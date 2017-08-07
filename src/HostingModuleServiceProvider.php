@@ -12,6 +12,10 @@ class HostingModuleServiceProvider extends DropletServiceProvider
 {
     protected $routes = [
         'hostings'               => HostingsController::class . '@index',
+        'hostings/{hosting}/edit' => [
+            'as' => 'hostings::hosting.edit',
+            'uses' => HostingsController::class . '@edit',
+        ],
         'hostings/{hosting}/dns' => DnsController::class . '@index',
     ];
 
