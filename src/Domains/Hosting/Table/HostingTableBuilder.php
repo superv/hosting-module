@@ -4,4 +4,5 @@ use SuperV\Platform\Domains\UI\Table\TableBuilder;
 
 class HostingTableBuilder extends TableBuilder
 {
+    protected $buttons = ['edit'];
 }
