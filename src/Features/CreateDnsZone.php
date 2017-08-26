@@ -7,6 +7,26 @@ class CreateDnsZone extends Feature
 {
     public static $route = 'post@api/hosting/dns/zones';
 
+    /**
+     * @var array
+     */
+    private $params = [];
+
+    public function __construct(array $params = [])
+    {
+        $this->params = $params;
+    }
+
+    public function param($name, $default = null)
+    {
+       return array_get($this->params, $name, $default);
+    }
+
+    public function __get($name)
+    {
+       return array_get($this->params, $name);
+    }
+
     public function handle(Zones $zones)
     {
         $zone = $zones->create(
@@ -19,5 +39,13 @@ class CreateDnsZone extends Feature
         );
 
         return ['id' => $zone->id];
+    }
+
+    /**
+     * @return array
+     */
+    public function params(): array
+    {
+        return $this->params;
     }
 }

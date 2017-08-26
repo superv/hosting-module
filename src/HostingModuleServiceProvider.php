@@ -1,5 +1,6 @@
 <?php namespace SuperV\Modules\Hosting;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use SuperV\Modules\Hosting\Features\CreateDnsRecord;
 use SuperV\Modules\Hosting\Features\CreateDnsZone;
 use SuperV\Modules\Hosting\Features\DeleteDnsRecord;
@@ -18,4 +19,11 @@ class HostingModuleServiceProvider extends DropletServiceProvider
     protected $manifests = [
         HostingModuleManifest::class,
     ];
+
+    public function boot() {
+        Relation::morphMap([
+            'posts' => 'App\Post',
+            'videos' => 'App\Video',
+        ]);
+    }
 }

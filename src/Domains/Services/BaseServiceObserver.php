@@ -3,7 +3,7 @@
 use SuperV\Platform\Domains\Entry\EntryModel;
 use SuperV\Platform\Domains\Entry\EntryObserver;
 
-class HostingServiceObserver extends EntryObserver
+class BaseServiceObserver extends EntryObserver
 {
     protected function dispatch(EntryModel $entry, $eventName)
     {

@@ -1,10 +1,15 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services\Dns;
 
-use SuperV\Modules\Hosting\Domains\Services\HostingServiceModel;
+use SuperV\Modules\Hosting\Domains\Services\BaseServiceModel;
 
-class RecordModel extends HostingServiceModel
+class RecordModel extends BaseServiceModel
 {
     protected $table = 'hosting_dns_records';
+
+    public function getHosting()
+    {
+        return $this->getZone()->getHosting();
+    }
 
     public function getService()
     {
