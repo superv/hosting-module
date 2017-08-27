@@ -1,6 +1,6 @@
 <?php namespace SuperV\Modules\Hosting;
 
-use SuperV\Modules\Hosting\Domains\Hosting\HostingManifest;
+use SuperV\Modules\Hosting\Domains\Package\PackageManifest;
 use SuperV\Modules\Hosting\Domains\Plan\PlanManifest;
 use SuperV\Platform\Domains\Manifest\DropletManifest;
 
@@ -13,7 +13,7 @@ class HostingModuleManifest extends DropletManifest
       protected $navigation = true;
 
       protected $manifests = [
-          HostingManifest::class,
+          PackageManifest::class,
           PlanManifest::class,
       ];
 }

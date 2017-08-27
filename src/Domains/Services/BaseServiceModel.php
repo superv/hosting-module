@@ -1,6 +1,6 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services;
 
-use SuperV\Modules\Hosting\Domains\Hosting\HostingModel;
+use SuperV\Modules\Hosting\Domains\Package\PackageModel;
 use SuperV\Modules\Supreme\Domains\Service\Model\ServiceModel;
 use SuperV\Platform\Domains\Entry\EntryModel;
 
@@ -12,20 +12,19 @@ class BaseServiceModel extends EntryModel
         return $this->belongsTo(ServiceModel::class, 'service_id');
     }
 
-    public function hosting()
+    public function package()
     {
-        return $this->belongsTo(HostingModel::class, 'hosting_id');
+        return $this->belongsTo(PackageModel::class, 'package_id');
     }
 
-    /** @return HostingModel */
-    public function getHosting()
+    public function getPackage()
     {
-        return $this->hosting;
+        return $this->package;
     }
 
     public function getDomain()
     {
-        return $this->getHosting()->getDomain();
+        return $this->getPackage()->getDomain();
     }
 
     /** @return ServiceModel */

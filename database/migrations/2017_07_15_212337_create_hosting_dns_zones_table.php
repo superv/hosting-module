@@ -15,18 +15,11 @@ class CreateHostingDnsZonesTable extends Migration
     {
         Schema::create('hosting_dns_zones', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('hosting_id');
+            $table->unsignedInteger('package_id');
             $table->unsignedInteger('service_id');
             $table->unsignedInteger('external_id')->nullable();
             $table->string('zone_type');
             $table->nullableTimestamps();
-
-//            $table->foreign('service_id')
-//                  ->references('id')
-//                  ->on('supreme_services')
-//                  ->onDelete('cascade');
-//
-//            $table->unique(['service_id', 'domain']);
         });
     }
 
