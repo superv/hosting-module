@@ -9,4 +9,5 @@ class HostingServiceModel extends HostingServiceEntryModel
     {
         return $this->belongsTo(HostingModel::class, 'id', 'hosting_id');
     }
+
 }

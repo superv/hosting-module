@@ -5,6 +5,7 @@ use SuperV\Modules\Hosting\Features\CreateDnsRecord;
 use SuperV\Modules\Hosting\Features\CreateDnsZone;
 use SuperV\Modules\Hosting\Features\DeleteDnsRecord;
 use SuperV\Modules\Hosting\Features\DeleteDnsZone;
+use SuperV\Platform\Domains\Droplet\DropletProvider;
 use SuperV\Platform\Domains\Droplet\DropletServiceProvider;
 
 class HostingModuleServiceProvider extends DropletServiceProvider
@@ -20,10 +21,9 @@ class HostingModuleServiceProvider extends DropletServiceProvider
         HostingModuleManifest::class,
     ];
 
-    public function boot() {
+    public function register() {
         Relation::morphMap([
-            'posts' => 'App\Post',
-            'videos' => 'App\Video',
+            'dns_zone' => 'SuperV\Modules\Hosting\Domains\Services\Dns\ZoneModel',
         ]);
     }
 }
