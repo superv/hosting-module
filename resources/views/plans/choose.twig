@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <button class="close" data-dismiss="modal">
+        <span>&times;</span>
+    </button>
+    <h4 class="modal-title">Please Select a Plan</h4>
+</div>
+    <ul class="nav nav-pills nav-stacked">
+        {% for plan in plans.all() %}
+            <li class="nav-item">
+                <a href="{{ url_to(target ~ '?plan=' ~ plan.id) }}" class="nav-link">
+                    <strong>{{ plan.name }}</strong>
+                    <br>
+                    <small>ssss</small>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
