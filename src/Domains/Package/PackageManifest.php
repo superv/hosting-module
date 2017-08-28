@@ -1,5 +1,6 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Package;
 
+use SuperV\Modules\Hosting\Domains\Package\Form\PackageFormBuilder;
 use SuperV\Modules\Hosting\Domains\Plan\Plans;
 use SuperV\Platform\Domains\Manifest\ModelManifest;
 use SuperV\Platform\Domains\UI\Form\FormBuilder;
@@ -27,7 +28,7 @@ class PackageManifest extends ModelManifest
                 'url'        => 'hosting/packages',
                 'handler'    => function (TableBuilder $builder) {
                     $builder->setModel(PackageModel::class)
-                            ->setButtons(['edit']);
+                            ->setButtons(['delete','edit']);
 
                     return $builder->render();
                 },
@@ -46,7 +47,7 @@ class PackageManifest extends ModelManifest
                 'title'      => 'New Package',
                 'route'      => 'acp@hosting::packages.create',
                 'url'        => 'hosting/packages/create',
-                'handler'    => function (FormBuilder $builder, PackageModel $service) {
+                'handler'    => function (PackageFormBuilder $builder, PackageModel $service) {
                     return $builder->render($service);
                 },
                 'buttons'    => [
@@ -58,7 +59,7 @@ class PackageManifest extends ModelManifest
                 'title'   => 'Edit Package',
                 'route'   => 'acp@hosting::packages.edit',
                 'url'     => 'hosting/packages/{id}/edit',
-                'handler' => function (FormBuilder $builder, Packages $packages, $id) {
+                'handler' => function (PackageFormBuilder $builder, Packages $packages, $id) {
                     return $builder->render($packages->find($id));
                 },
                 'buttons' => [
