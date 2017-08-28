@@ -32,7 +32,7 @@ class PlanManifest extends ModelManifest
                 ],
             ],
 
-            'edit'   => [
+            'edit'  => [
                 'title'   => 'Edit Plan',
                 'route'   => 'acp@hosting::plans.edit',
                 'url'     => 'hosting/plans/{plan}/edit',
@@ -45,16 +45,16 @@ class PlanManifest extends ModelManifest
                     'create',
                 ],
             ],
-            'index'  => [
+            'index' => [
                 'navigation' => true,
                 'title'      => 'Plans',
                 'route'      => 'acp@hosting::plans.index',
                 'url'        => 'hosting/plans',
                 'handler'    => function (TableBuilder $builder) {
-                    $builder->setModel(PlanModel::class)
-                            ->setButtons(['edit', 'delete']);
 
-                    return $builder->render();
+                    return $builder->setModel(PlanModel::class)
+                                   ->setButtons(['edit', 'delete'])
+                                   ->render();
                 },
                 'buttons'    => [
                     'create',
