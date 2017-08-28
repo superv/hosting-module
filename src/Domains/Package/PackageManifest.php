@@ -14,20 +14,9 @@ class PackageManifest extends ModelManifest
                 'route'   => 'acp@hosting::plans.choose',
                 'url'     => 'hosting/plans/choose',
                 'handler' => function (Plans $plans) {
-                    return view()->make('module::plans/choose', ['plans' => $plans->all(), 'route' => 'acp@hosting::packages.create' ]);
+                    return view()->make('module::plans/choose', ['plans' => $plans->all(),
+                                                                 'route' => 'acp@hosting::packages.create']);
                 },
-            ],
-            'create'      => [
-                'navigation' => true,
-                'title'      => 'New Package',
-                'route'      => 'acp@hosting::packages.create',
-                'url'        => 'hosting/packages/create',
-                'handler'    => function (FormBuilder $builder, PackageModel $service) {
-                    return $builder->render($service);
-                },
-                'buttons'    => [
-                    'index',
-                ],
             ],
             'index'       => [
                 'navigation' => true,
@@ -44,8 +33,21 @@ class PackageManifest extends ModelManifest
                     'create',
                     'choose_plan' => [
                         'data-toggle' => 'modal',
-                        'data-target' => '#modal'
+                        'data-target' => '#modal',
                     ],
+                ],
+            ],
+
+            'create' => [
+                'navigation' => true,
+                'title'      => 'New Package',
+                'route'      => 'acp@hosting::packages.create',
+                'url'        => 'hosting/packages/create',
+                'handler'    => function (FormBuilder $builder, PackageModel $service) {
+                    return $builder->render($service);
+                },
+                'buttons'    => [
+                    'index',
                 ],
             ],
 
