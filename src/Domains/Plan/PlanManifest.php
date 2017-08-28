@@ -21,6 +21,7 @@ class PlanManifest extends ModelManifest
         return [
             'index' => [
                 'navigation' => true,
+                'icon' => 'files-o',
                 'title'      => 'Plans',
                 'route'      => 'acp@hosting::plans.index',
                 'url'        => 'hosting/plans',

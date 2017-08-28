@@ -17,10 +17,6 @@ class HostingModuleServiceProvider extends DropletServiceProvider
         DeleteDnsRecord::class,
     ];
 
-    protected $manifests = [
-        HostingModuleManifest::class,
-    ];
-
     public function register() {
         Relation::morphMap([
             'dns_zone' => 'SuperV\Modules\Hosting\Domains\Services\Dns\ZoneModel',

@@ -21,6 +21,7 @@ class PackageManifest extends ModelManifest
             ],
             'index'       => [
                 'navigation' => true,
+                'icon' => 'puzzle-piece',
                 'title'      => 'Packages',
                 'route'      => 'acp@hosting::packages.index',
                 'url'        => 'hosting/packages',
