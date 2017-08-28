@@ -11,6 +11,7 @@ class PackageManifest extends ModelManifest
     {
         return [
             'choose_plan' => [
+                'title' => 'Choose Plan',
                 'route'   => 'acp@hosting::plans.choose',
                 'url'     => 'hosting/plans/choose',
                 'handler' => function (Plans $plans) {
@@ -32,6 +33,7 @@ class PackageManifest extends ModelManifest
                 'buttons'    => [
                     'create',
                     'choose_plan' => [
+                        'text' => 'Choose Plan',
                         'data-toggle' => 'modal',
                         'data-target' => '#modal',
                     ],

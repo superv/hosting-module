@@ -19,32 +19,6 @@ class PlanManifest extends ModelManifest
     public function getPages()
     {
         return [
-            'create' => [
-                'navigation' => true,
-                'title'      => 'New Plan',
-                'route'      => 'acp@hosting::plans.create',
-                'url'        => 'hosting/plans/create',
-                'handler'    => function (FormBuilder $builder, PlanModel $plan) {
-                    return $builder->render($plan);
-                },
-                'buttons'    => [
-                    'index',
-                ],
-            ],
-
-            'edit'  => [
-                'title'   => 'Edit Plan',
-                'route'   => 'acp@hosting::plans.edit',
-                'url'     => 'hosting/plans/{plan}/edit',
-                'handler' => function (FormBuilder $builder, PlanModel $plan) {
-                    return $builder->render($plan);
-                },
-                'buttons' => [
-                    'index',
-                    'delete',
-                    'create',
-                ],
-            ],
             'index' => [
                 'navigation' => true,
                 'title'      => 'Plans',
@@ -57,6 +31,31 @@ class PlanManifest extends ModelManifest
                                    ->render();
                 },
                 'buttons'    => [
+                    'create',
+                ],
+            ],
+            'create' => [
+                'navigation' => true,
+                'title'      => 'New Plan',
+                'route'      => 'acp@hosting::plans.create',
+                'url'        => 'hosting/plans/create',
+                'handler'    => function (FormBuilder $builder, PlanModel $plan) {
+                    return $builder->render($plan);
+                },
+                'buttons'    => [
+                    'index',
+                ],
+            ],
+            'edit'  => [
+                'title'   => 'Edit Plan',
+                'route'   => 'acp@hosting::plans.edit',
+                'url'     => 'hosting/plans/{plan}/edit',
+                'handler' => function (FormBuilder $builder, PlanModel $plan) {
+                    return $builder->render($plan);
+                },
+                'buttons' => [
+                    'index',
+                    'delete',
                     'create',
                 ],
             ],
