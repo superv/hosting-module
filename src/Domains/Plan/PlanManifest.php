@@ -7,6 +7,8 @@ use SuperV\Platform\Domains\UI\Table\TableBuilder;
 
 class PlanManifest extends ModelManifest
 {
+    protected $routeKeyName = 'plan';
+
     public function handle()
     {
         $this->pages[] = (new Page('acp@hosting::plans.index'))
@@ -19,7 +21,7 @@ class PlanManifest extends ModelManifest
         return [
             'create' => [
                 'navigation' => true,
-                'title'      => 'Add New Plan',
+                'title'      => 'New Plan',
                 'route'      => 'acp@hosting::plans.create',
                 'url'        => 'hosting/plans/create',
                 'handler'    => function (FormBuilder $builder, PlanModel $plan) {
@@ -29,26 +31,28 @@ class PlanManifest extends ModelManifest
                     'index',
                 ],
             ],
-            'edit' => [
-                        'title'      => 'Edit Plan',
-                        'route'      => 'acp@hosting::plans.edit',
-                        'url'        => 'hosting/plans/{plan}/edit',
-                        'handler'    => function (FormBuilder $builder, PlanModel $plan) {
-                            return $builder->render($plan);
-                        },
-                        'buttons'    => [
-                            'index',
-                            'create'
-                        ],
-                    ],
+
+            'edit'   => [
+                'title'   => 'Edit Plan',
+                'route'   => 'acp@hosting::plans.edit',
+                'url'     => 'hosting/plans/{plan}/edit',
+                'handler' => function (FormBuilder $builder, PlanModel $plan) {
+                    return $builder->render($plan);
+                },
+                'buttons' => [
+                    'index',
+                    'delete',
+                    'create',
+                ],
+            ],
             'index'  => [
                 'navigation' => true,
-                'title'      => 'List Plans',
+                'title'      => 'Plans',
                 'route'      => 'acp@hosting::plans.index',
                 'url'        => 'hosting/plans',
                 'handler'    => function (TableBuilder $builder) {
                     $builder->setModel(PlanModel::class)
-                            ->setButtons(['edit']);
+                            ->setButtons(['edit', 'delete']);
 
                     return $builder->render();
                 },
