@@ -1,7 +1,7 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Package\Form;
 
 use SuperV\Modules\Hosting\Domains\Package\PackageModel;
-use SuperV\Modules\Supreme\Domains\Service\Model\ServiceModel;
+use SuperV\Modules\Supreme\Domains\Service\Model\DropModel;
 use SuperV\Platform\Domains\Entry\EntryModel;
 use SuperV\Platform\Domains\UI\Form\FormBuilder;
 
@@ -11,35 +11,40 @@ class PackageFormBuilder extends FormBuilder
         'delete',
         'provision' => [
             'tooltip' => 'Provision Package on Server',
-            'text' => 'Provision',
-            'type' => 'info',
-            'href' => 'hosting/packages/{entry.id}/provision',
-            'icon' => 'fa fa-lock'
-        ]
+            'text'    => 'Provision',
+            'type'    => 'info',
+            'href'    => 'hosting/packages/{entry.id}/provision',
+            'icon'    => 'fa fa-lock',
+        ],
     ];
+
     public function onSaved(EntryModel $entry)
     {
         /** @var PackageModel $entry */
-        $mode = $this->getForm()->getMode();
-
         $entry->drops()->delete();
 
-        if (true || $mode == 'create') {
+        if (true || $this->isCreating()) {
             $plan = $entry->getPlan();
 
-            if ($services = $plan->getServices()) {
-                /** @var ServiceModel $service */
-                foreach ($services as $service) {
-                    $entry->drops()->create(
-                        [
-                            'server_id'    => $service->getServerId(),
-                            'agent_id'     => $service->getAgent()->getId(),
-                            'name'         => "{$service->getName()} Drop",
-                            'service_type' => $service->getType(),
-                            'context'      => 'package',
-                            'status'       => 0,
-                        ]
-                    );
+            if ($drops = $plan->getDrops()) {
+                /** @var DropModel $drop */
+                foreach ($drops as $drop) {
+
+                    $replicate = $drop->replicate();
+
+                    $replicate->fill([
+                        'context' => 'package',
+                        'name' => str_replace('Plan Drop', 'Package Drop', $replicate->name),
+                    ])->save();
+
+                    $entry->drops()->attach($replicate);
+
+
+                    ///** @var AttributeInterface $attribute */
+                    //foreach ($drop->getAttrs() as $attribute) {
+                    //    $newAttribute = $attribute->replicate();
+                    //    $newAttribute->setRelated($newDrop)->save();
+                    //}
                 }
             }
         }

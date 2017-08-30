@@ -12,11 +12,12 @@ class PlanEntryModel extends EntryModel
         'name:text|required',
         'services:relation' => [
             'related' => ServiceModel::class,
+            'mapped' => false,
             'multiple' => true,
             'expanded' => true
         ]
     ];
 
-    protected $relationships = ['services'];
+    //protected $relationships = ['services'];
 
 }

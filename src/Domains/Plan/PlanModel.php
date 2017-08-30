@@ -1,22 +1,28 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Plan;
 
 use SuperV\Modules\Hosting\Model\Entry\PlanEntryModel;
+use SuperV\Modules\Supreme\Domains\Service\Model\DropModel;
 use SuperV\Modules\Supreme\Domains\Service\Model\ServiceModel;
 
 class PlanModel extends PlanEntryModel
 {
-    public function services()
+    public function drops()
     {
         return $this->belongsToMany(
-            ServiceModel::class,
-            'hosting_plan_services',
+            DropModel::class,
+            'hosting_plan_drops',
             'plan_id',
-            'service_id'
+            'drop_id'
         );
     }
 
-    public function getServices()
+    public function getDrops()
     {
-        return $this->services;
+        return $this->drops;
+    }
+
+    public function getServiceOptions()
+    {
+        return superv('services')->get();
     }
 }

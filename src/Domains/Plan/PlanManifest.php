@@ -1,5 +1,6 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Plan;
 
+use SuperV\Modules\Hosting\Domains\Plan\Form\PlanFormBuilder;
 use SuperV\Platform\Domains\Manifest\ModelManifest;
 use SuperV\Platform\Domains\UI\Form\FormBuilder;
 use SuperV\Platform\Domains\UI\Page\Page;
@@ -40,7 +41,7 @@ class PlanManifest extends ModelManifest
                 'title'      => 'New Plan',
                 'route'      => 'acp@hosting::plans.create',
                 'url'        => 'hosting/plans/create',
-                'handler'    => function (FormBuilder $builder, PlanModel $plan) {
+                'handler'    => function (PlanFormBuilder $builder, PlanModel $plan) {
                     return $builder->render($plan);
                 },
                 'buttons'    => [
@@ -51,7 +52,7 @@ class PlanManifest extends ModelManifest
                 'title'   => 'Edit Plan',
                 'route'   => 'acp@hosting::plans.edit',
                 'url'     => 'hosting/plans/{plan}/edit',
-                'handler' => function (FormBuilder $builder, PlanModel $plan) {
+                'handler' => function (PlanFormBuilder $builder, PlanModel $plan) {
                     return $builder->render($plan);
                 },
                 'buttons' => [
