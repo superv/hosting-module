@@ -26,6 +26,11 @@ class PackageModel extends PackageEntryModel
             'drop_id'
         );
     }
+    
+    public function getDrops()
+    {
+        return $this->drops;
+    }
 
     public function getDomain()
     {

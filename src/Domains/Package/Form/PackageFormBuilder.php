@@ -14,8 +14,6 @@ class PackageFormBuilder extends FormBuilder
             'text' => 'Provision',
             'type' => 'info',
             'href' => 'hosting/packages/{entry.id}/provision',
-            'remote' => true,
-            'confirm' => true,
             'icon' => 'fa fa-lock'
         ]
     ];
