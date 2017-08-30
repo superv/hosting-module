@@ -12,7 +12,7 @@ class PlanManifest extends ModelManifest
 
     public function handle()
     {
-        $this->pages[] = (new Page('acp@hosting::plans.index'))
+        $this->pages[] = (new Page('hosting::plans.index'))
             ->setTitle('Plans')
             ->setUrl('hosting/plans');
     }
@@ -24,7 +24,7 @@ class PlanManifest extends ModelManifest
                 'navigation' => true,
                 'icon' => 'files-o',
                 'title'      => 'Plans',
-                'route'      => 'acp@hosting::plans.index',
+                'route'      => 'hosting::plans.index',
                 'url'        => 'hosting/plans',
                 'handler'    => function (TableBuilder $builder) {
 
@@ -39,7 +39,7 @@ class PlanManifest extends ModelManifest
             'create' => [
                 'navigation' => true,
                 'title'      => 'New Plan',
-                'route'      => 'acp@hosting::plans.create',
+                'route'      => 'hosting::plans.create',
                 'url'        => 'hosting/plans/create',
                 'handler'    => function (PlanFormBuilder $builder, PlanModel $plan) {
                     return $builder->render($plan);
@@ -50,7 +50,7 @@ class PlanManifest extends ModelManifest
             ],
             'edit'  => [
                 'title'   => 'Edit Plan',
-                'route'   => 'acp@hosting::plans.edit',
+                'route'   => 'hosting::plans.edit',
                 'url'     => 'hosting/plans/{plan}/edit',
                 'handler' => function (PlanFormBuilder $builder, PlanModel $plan) {
                     return $builder->render($plan);

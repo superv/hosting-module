@@ -13,18 +13,18 @@ class PackageManifest extends ModelManifest
         return [
             'choose_plan' => [
                 'title' => 'Choose Plan',
-                'route'   => 'acp@hosting::plans.choose',
+                'route'   => 'hosting::plans.choose',
                 'url'     => 'hosting/plans/choose',
                 'handler' => function (Plans $plans) {
                     return view()->make('module::plans/choose', ['plans' => $plans->all(),
-                                                                 'route' => 'acp@hosting::packages.create']);
+                                                                 'route' => 'hosting::packages.create']);
                 },
             ],
             'index'       => [
                 'navigation' => true,
                 'icon' => 'puzzle-piece',
                 'title'      => 'Packages',
-                'route'      => 'acp@hosting::packages.index',
+                'route'      => 'hosting::packages.index',
                 'url'        => 'hosting/packages',
                 'handler'    => function (TableBuilder $builder) {
                     $builder->setModel(PackageModel::class)
@@ -45,7 +45,7 @@ class PackageManifest extends ModelManifest
             'create' => [
                 'navigation' => true,
                 'title'      => 'New Package',
-                'route'      => 'acp@hosting::packages.create',
+                'route'      => 'hosting::packages.create',
                 'url'        => 'hosting/packages/create',
                 'handler'    => function (PackageFormBuilder $builder, PackageModel $service) {
                     return $builder->render($service);
@@ -57,7 +57,7 @@ class PackageManifest extends ModelManifest
 
             'edit' => [
                 'title'   => 'Edit Package',
-                'route'   => 'acp@hosting::packages.edit',
+                'route'   => 'hosting::packages.edit',
                 'url'     => 'hosting/packages/{id}/edit',
                 'handler' => function (PackageFormBuilder $builder, Packages $packages, $id) {
                     return $builder->render($packages->find($id));
