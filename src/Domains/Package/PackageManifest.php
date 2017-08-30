@@ -64,7 +64,6 @@ class PackageManifest extends ModelManifest
                 },
                 'buttons' => [
                     'create',
-                    'delete' => ['class' => 'remote'],
                 ],
             ],
         ];

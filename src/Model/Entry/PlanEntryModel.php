@@ -19,13 +19,4 @@ class PlanEntryModel extends EntryModel
 
     protected $relationships = ['services'];
 
-    public function services()
-    {
-        return $this->belongsToMany(
-            ServiceModel::class,
-            'hosting_plan_services',
-            'plan_id',
-            'service_id'
-        );
-    }
 }
