@@ -24,7 +24,7 @@ class Part
 
     public function createRelated()
     {
-        $related = superv($this->model->getRelatedType())->package($this);
+        $related = app($this->model->getRelatedType())->package($this);
 
         $related->part()->save($this->model);
         //$this->model->related()->associate($related);

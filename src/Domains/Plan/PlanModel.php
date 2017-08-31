@@ -22,6 +22,6 @@ class PlanModel extends PlanEntryModel
 
     public function getServiceOptions()
     {
-        return superv('services')->get();
+        return app('services')->get();
     }
 }
