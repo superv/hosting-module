@@ -1,8 +1,7 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Plan;
 
 use SuperV\Modules\Hosting\Model\Entry\PlanEntryModel;
-use SuperV\Modules\Supreme\Domains\Service\Model\DropModel;
-use SuperV\Modules\Supreme\Domains\Service\Model\ServiceModel;
+use SuperV\Modules\Supreme\Domains\Drop\Model\DropModel;
 
 class PlanModel extends PlanEntryModel
 {
