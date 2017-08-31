@@ -1,8 +1,8 @@
-<?php namespace SuperV\Modules\Hosting\Domains\Package;
+<?php namespace SuperV\Modules\Hosting\Domains\Package\Model;
 
 use SuperV\Modules\Hosting\Domains\Plan\PlanModel;
 use SuperV\Modules\Hosting\Model\Entry\PackageEntryModel;
-use SuperV\Modules\Supreme\Domains\Service\Model\DropModel;
+use SuperV\Modules\Supreme\Domains\Drop\Model\DropModel;
 
 class PackageModel extends PackageEntryModel
 {

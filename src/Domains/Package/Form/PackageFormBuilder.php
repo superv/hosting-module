@@ -1,7 +1,7 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Package\Form;
 
-use SuperV\Modules\Hosting\Domains\Package\PackageModel;
-use SuperV\Modules\Supreme\Domains\Service\Model\DropModel;
+use SuperV\Modules\Hosting\Domains\Package\Model\PackageModel;
+use SuperV\Modules\Supreme\Domains\Drop\Model\DropModel;
 use SuperV\Platform\Domains\Entry\EntryModel;
 use SuperV\Platform\Domains\UI\Form\FormBuilder;
 

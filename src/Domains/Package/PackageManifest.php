@@ -1,9 +1,10 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Package;
 
 use SuperV\Modules\Hosting\Domains\Package\Form\PackageFormBuilder;
+use SuperV\Modules\Hosting\Domains\Package\Model\PackageModel;
+use SuperV\Modules\Hosting\Domains\Package\Model\Packages;
 use SuperV\Modules\Hosting\Domains\Plan\Plans;
 use SuperV\Platform\Domains\Manifest\ModelManifest;
-use SuperV\Platform\Domains\UI\Form\FormBuilder;
 use SuperV\Platform\Domains\UI\Table\TableBuilder;
 
 class PackageManifest extends ModelManifest
