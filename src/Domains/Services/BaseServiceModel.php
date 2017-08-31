@@ -1,6 +1,6 @@
 <?php namespace SuperV\Modules\Hosting\Domains\Services;
 
-use SuperV\Modules\Hosting\Domains\Package\PackageModel;
+use SuperV\Modules\Hosting\Domains\Package\Model\PackageModel;
 use SuperV\Modules\Supreme\Domains\Service\Model\ServiceModel;
 use SuperV\Platform\Domains\Entry\EntryModel;
 
