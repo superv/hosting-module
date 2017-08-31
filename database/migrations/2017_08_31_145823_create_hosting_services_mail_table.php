@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHostingPackageDropsTable extends Migration
+class CreateHostingServicesMailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateHostingPackageDropsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hosting_package_drops', function (Blueprint $table) {
+        Schema::create('hosting_services_mail', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('package_id');
-            $table->unsignedInteger('drop_id');
+            $table->unsignedInteger('part_id');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +27,6 @@ class CreateHostingPackageDropsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hosting_package_drops');
+        Schema::dropIfExists('hosting_services_mail');
     }
 }
