@@ -9,7 +9,9 @@ class Packages extends EloquentRepository
     {
         if (is_numeric($package)) {
             $package = $this->find($package);
-        } else if(! $package instanceof PackageModel || !$package->exists) {
+        }
+
+        if(! $package instanceof PackageModel || !$package->exists) {
             throw new \InvalidArgumentException('Package not found');
         }
 

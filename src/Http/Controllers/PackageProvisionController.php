@@ -1,28 +1,23 @@
 <?php namespace SuperV\Modules\Hosting\Http\Controllers;
 
 use SuperV\Modules\Hosting\Domains\Package\Model\Packages;
-use SuperV\Modules\Supreme\Domains\Drop\Drop;
-use SuperV\Platform\Domains\Task\Jobs\DeployTaskJob;
+use SuperV\Modules\Hosting\Domains\Package\Part;
 use SuperV\Platform\Domains\Task\TaskBuilder;
 use SuperV\Ports\Acp\Http\Controllers\BaseAcpController;
 
 class PackageProvisionController extends BaseAcpController
 {
-    public function index($packageId, Packages $packages, TaskBuilder $builder)
+    public function index($packageId, Packages $packages)
     {
         $package = $packages->build($packageId);
 
-        /** @var Drop $drop */
-        foreach ($package->drops() as $drop) {
-            $agent = $drop->agent();
+        /** @var Part $part */
+        foreach ($package->parts() as $part) {
 
-            dd($agent, $agent->getFeature('provision'));
+            $service = $part->createRelated();
 
-            $task = $builder->setTitle('Provision Package Drop #'.$drop->getId())->setPayload([
-                'feature' => $agent->getFeature('provision'),
-            ])->build();
+            dd($part->related());
 
-            $this->dispatch(new DeployTaskJob($task));
         }
 
         dd($package->drops());

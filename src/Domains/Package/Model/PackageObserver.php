@@ -2,20 +2,24 @@
 
 namespace SuperV\Modules\Hosting\Domains\Package\Model;
 
+use PhpParser\Builder\Function_;
 use SuperV\Modules\Supreme\Domains\Drop\Model\DropModel;
 use SuperV\Platform\Domains\Entry\EntryModel;
 use SuperV\Platform\Domains\Entry\EntryObserver;
 
 class PackageObserver extends EntryObserver
 {
-    public function deleting(EntryModel $entry)
+    public function deleted(EntryModel $entry)
     {
         /** @var PackageModel $entry */
-        $entry->getDrops()->map(function (DropModel $drop) use ($entry) {
-            $entry->drops()->detach($drop);
-            $drop->delete();
+        $entry->getParts()->map(function (PartModel $part) {
+            $part->delete();
         });
+        //$entry->getDrops()->map(function (DropModel $drop) use ($entry) {
+        //    $entry->drops()->detach($drop);
+        //    $drop->delete();
+        //});
 
-        parent::deleting($entry);
+        parent::deleted($entry);
     }
 }

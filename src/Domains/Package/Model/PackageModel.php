@@ -17,19 +17,14 @@ class PackageModel extends PackageEntryModel
         return $this->plan;
     }
 
-    public function drops()
+    public function parts()
     {
-        return $this->belongsToMany(
-            DropModel::class,
-            'hosting_package_drops',
-            'package_id',
-            'drop_id'
-        );
+        return $this->hasMany(PartModel::class, 'package_id');
     }
-    
-    public function getDrops()
+
+    public function getParts()
     {
-        return $this->drops;
+        return $this->parts;
     }
 
     public function getDomain()

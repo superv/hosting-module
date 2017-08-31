@@ -59,12 +59,13 @@ class PackageManifest extends ModelManifest
             'edit' => [
                 'title'   => 'Edit Package',
                 'route'   => 'hosting::packages.edit',
-                'url'     => 'hosting/packages/{id}/edit',
-                'handler' => function (PackageFormBuilder $builder, Packages $packages, $id) {
-                    return $builder->render($packages->find($id));
+                'url'     => 'hosting/packages/{package}/edit',
+                'handler' => function (PackageFormBuilder $builder, PackageModel $package) {
+                    return $builder->render($package);
                 },
                 'buttons' => [
                     'create',
+                    'index'
                 ],
             ],
         ];
