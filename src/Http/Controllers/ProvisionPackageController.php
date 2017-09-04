@@ -2,10 +2,9 @@
 
 use SuperV\Modules\Hosting\Domains\Package\Model\Packages;
 use SuperV\Modules\Hosting\Domains\Package\Part;
-use SuperV\Platform\Domains\Task\TaskBuilder;
 use SuperV\Ports\Acp\Http\Controllers\BaseAcpController;
 
-class PackageProvisionController extends BaseAcpController
+class ProvisionPackageController extends BaseAcpController
 {
     public function index($packageId, Packages $packages)
     {

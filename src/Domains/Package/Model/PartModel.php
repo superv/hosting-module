@@ -17,6 +17,16 @@ class PartModel extends PartEntryModel
         return $this->drop;
     }
 
+    public function package()
+    {
+        return $this->belongsTo(PackageModel::class, 'package_id');
+    }
+    
+    public function getPackage()
+    {
+        return $this->package;
+    }
+
     public function related()
     {
         return $this->morphTo();

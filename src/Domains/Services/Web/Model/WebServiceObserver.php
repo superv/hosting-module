@@ -9,9 +9,9 @@ class WebServiceObserver extends EntryObserver
 {
     public function created(EntryModel $entry)
     {
-        $event =  'superv.agents.nginx::web.created';
+        $event =  'superv::web.created';
 
-        $this->events->dispatch($event, $entry);
+        $this->events->dispatch($event,$entry);
 
         parent::created($entry);
     }
