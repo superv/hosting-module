@@ -22,7 +22,7 @@ class PackageFormBuilder extends FormBuilder
     public function onSaved(EntryModel $entry)
     {
         /** @var PackageModel $entry */
-        $entry->parts()->delete();
+        $entry->getParts()->map(function($part) {$part->delete(); });
 
         if (true || $this->isCreating()) {
             $plan = $entry->getPlan();
@@ -42,27 +42,7 @@ class PackageFormBuilder extends FormBuilder
                         'related_type' => WebServiceModel::class,
                     ]);
 
-                    //$webServiceModel = WebServiceModel::create([
-                    //    'part_id'  => $part->getId(),
-                    //    'hostname' => $entry->getDomain(),
-                    //]);
-                    //
-                    //$part->update(['related_id' => $webServiceModel->getId()]);
-
-                    //$replicate = $drop->replicate();
-                    //
-                    //$replicate->fill([
-                    //    'context' => 'package',
-                    //    'name'    => str_replace('Plan Drop', 'Package Drop', $replicate->name),
-                    //])->save();
-                    //
-                    //$entry->drops()->attach($replicate);
-
-                    ///** @var AttributeInterface $attribute */
-                    //foreach ($drop->getAttrs() as $attribute) {
-                    //    $newAttribute = $attribute->replicate();
-                    //    $newAttribute->setRelated($newDrop)->save();
-                    //}
+                    $replicate->setRelated($part);
                 }
             }
         }

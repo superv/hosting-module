@@ -15,10 +15,8 @@ class ProvisionPackageController extends BaseAcpController
 
             $service = $part->createRelated();
 
-            dd($part->related());
-
         }
 
-        dd($package->drops());
+        return 'queued';
     }
 }

@@ -17,11 +17,17 @@ class PartModel extends PartEntryModel
         return $this->drop;
     }
 
+    public function getDropId()
+    {
+        return $this->drop_id;
+    }
+
     public function package()
     {
         return $this->belongsTo(PackageModel::class, 'package_id');
     }
-    
+
+    /** @return PackageModel */
     public function getPackage()
     {
         return $this->package;

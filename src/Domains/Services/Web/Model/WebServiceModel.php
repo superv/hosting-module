@@ -13,6 +13,8 @@ class WebServiceModel extends WebServiceEntryModel
     {
         return $this->morphOne(PartModel::class, 'related', null, 'id', 'part_id');
     }
+
+    /** @return PartModel */
     public function getPart()
     {
         return $this->part;
