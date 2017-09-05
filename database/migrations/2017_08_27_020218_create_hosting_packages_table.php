@@ -19,7 +19,7 @@ class CreateHostingPackagesTable extends Migration
             $table->string('domain');
             $table->string('username');
             $table->string('password');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
 
             $table->unique(['domain', 'username']);
