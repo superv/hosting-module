@@ -9,6 +9,8 @@ use SuperV\Platform\Domains\UI\Table\TableBuilder;
 
 class PackageManifest extends ModelManifest
 {
+    protected $port = 'acp';
+
     public function getPages()
     {
         return [

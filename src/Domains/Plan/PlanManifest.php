@@ -8,6 +8,8 @@ use SuperV\Platform\Domains\UI\Table\TableBuilder;
 
 class PlanManifest extends ModelManifest
 {
+    protected $port = 'acp';
+
     protected $routeKeyName = 'plan';
 
     public function handle()
