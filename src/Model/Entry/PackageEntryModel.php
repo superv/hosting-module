@@ -1,12 +1,12 @@
 <?php namespace SuperV\Modules\Hosting\Model\Entry;
 
-use SuperV\Modules\Hosting\Domains\Package\Model\PartModel;
 use SuperV\Modules\Hosting\Domains\Plan\PlanModel;
-use SuperV\Modules\Supreme\Domains\Drop\Model\DropModel;
 use SuperV\Platform\Domains\Entry\EntryModel;
 
 class PackageEntryModel extends EntryModel
 {
+    public static $routeKeyname = 'package';
+
     public $timestamps = true;
 
     protected $table = 'hosting_packages';
@@ -17,7 +17,7 @@ class PackageEntryModel extends EntryModel
         'password:text|required',
 
         'plan:relation' => [
-            'related'  => PlanModel::class,
+            'related' => PlanModel::class,
         ],
 
         //'parts:relation' => [
