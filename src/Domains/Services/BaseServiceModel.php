@@ -35,7 +35,7 @@ class BaseServiceModel extends EntryModel
 
     public function getAgentSlug()
     {
-        return $this->getService()->getAgent()->slug();
+        return $this->getService()->getAgent()->getSlug();
     }
 
     public function getModelSlug()
