@@ -5,7 +5,6 @@ use SuperV\Modules\Hosting\Features\CreateDnsRecord;
 use SuperV\Modules\Hosting\Features\CreateDnsZone;
 use SuperV\Modules\Hosting\Features\DeleteDnsRecord;
 use SuperV\Modules\Hosting\Features\DeleteDnsZone;
-use SuperV\Platform\Domains\Droplet\DropletProvider;
 use SuperV\Platform\Domains\Droplet\DropletServiceProvider;
 
 class HostingModuleServiceProvider extends DropletServiceProvider
